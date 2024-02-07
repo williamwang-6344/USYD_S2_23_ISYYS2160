@@ -1,0 +1,78 @@
+<style>
+    body{
+    background-image: url('https://wallpaperaccess.com/full/2548254.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: 100% 100%;
+    /* background-color: #FB9153; */
+    
+    
+}
+
+.active ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.active li {
+    float: left;
+}
+
+.active li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.active a:hover {
+    background-color: #111;
+}
+</style>
+<html>
+    <head>
+        <title> Register</title>
+        <link rel="stylesheet" type="text/css" href="css/login.css">
+        <p>
+            <div class="active">
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/productPage">Product Catalog</a></li>
+                <li><a href="/orders">My Orders</a></li>
+                <li><a href="/cart">My Cart</a></li>
+        
+            </ul>    
+            </div>
+            
+
+        </p>
+    </head>
+    <body>
+    <div class ="container">
+        <h1>Register</h1>
+        <form action="/register" method="post">
+            <div class="form-group">
+                <label>Username</label>
+                <input name ="username" type="text" ></input>    
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input name ="password" type="password" ></input>
+                <input class = "button" type = "submit" value = "Register" >    
+            </div>
+            
+            
+        </form>
+        <ul style="list-style-type:none;">
+            <li>Already a user ?  <a href="/login" >Login</a>
+        </ul>
+        
+    </div>            
+    </body>
+</html>

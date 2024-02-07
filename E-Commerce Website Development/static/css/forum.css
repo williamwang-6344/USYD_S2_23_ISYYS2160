@@ -1,0 +1,110 @@
+#container{
+    float:left;
+    width:30%;
+    
+    box-sizing: border-box;
+    
+}
+#block h3{
+    margin-bottom:9px;
+}
+.message_window{
+    width:80%;
+    height:100%;
+    margin:auto;
+    border: 2px red solid;
+    margin-bottom:15px;
+}
+
+.form-message{
+    border: 2px red solid;
+    padding-bottom:15px;
+    
+}
+.form-message label{
+    display:block;
+    padding:8px;
+    margin:auto;
+}
+.form input[type="text"]{
+    
+    margin:auto;
+    width: 80%;
+}
+.form-message input[type="submit"]{
+    
+    margin:auto;
+    display:block;
+    width: 77%;
+}
+.my-form{
+    padding-left: 45%;
+    
+}
+#block{
+    float:right;
+    padding-left:auto;
+    margin-top:0;
+    text-align: center;
+    border: 2px red solid;
+    box-sizing: border-box;
+    width:70%
+    
+    
+    
+}
+.box{
+    
+    border:2px red solid;
+    margin-top:0;
+    
+}
+.box h2{
+    text-decoration: underline;
+    margin-top:0;
+    
+}
+.box ul{
+    /* padding:0; */
+    list-style:none;
+    padding-left: 60px;
+    margin-top:0;
+    
+}
+.box li{
+    /* padding:0; */
+    list-style:none;
+    margin-top:0;
+    border-bottom: 1px red solid;
+    padding-bottom: 6px;
+    
+    vertical-align: middle;
+    
+}
+a{
+    text-decoration: none;
+    color:#000;
+}
+.active ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.active li {
+    float: left;
+}
+
+.active li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.active a:hover {
+    background-color: #111;
+}

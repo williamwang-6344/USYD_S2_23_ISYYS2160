@@ -1,0 +1,66 @@
+
+<!-- 这个file是generate keys 用的 -->
+<p>This is your private key: </p>
+<textarea id="pvkey"></textarea> <button id="create" >Create file</button> <a download="${name}'s private Key.txt" id="downloadlink" style="display: none">click to download your private key to local machine</a>
+<!-- <input type="file" id="file-selector" multiple> -->
+<button onclick="myFunction()">click here to get your key pairs</button>
+<form action="${url}" method="post">
+  public Key <input name="pbkey" type="text" id="pbkey" />
+<!-- </form> -->
+<script>
+(function () {
+var textFile = null,
+  makeTextFile = function (text) {
+    var data = new Blob([text], {type: 'text/plain'});
+
+
+    if (textFile !== null) {
+      window.URL.revokeObjectURL(textFile);
+    }
+
+    textFile = window.URL.createObjectURL(data);
+
+    return textFile;
+  };
+
+
+  var create = document.getElementById('create'),
+    textbox = document.getElementById('pvkey');
+
+  create.addEventListener('click', function () {
+    var link = document.getElementById('downloadlink');
+    link.href = makeTextFile(textbox.value);
+    link.style.display = 'block';
+  }, false);
+})();
+function myFunction() {
+  
+window.crypto.subtle.generateKey(
+  {
+    name: "RSA-OAEP",
+    modulusLength: 4096,
+    publicExponent: new Uint8Array([1, 0, 1]),
+    hash: "SHA-256"
+  },
+  true,
+  ["encrypt", "decrypt"]    
+).then(function (KeyPair) {
+  crypto.subtle.exportKey('jwk', KeyPair.publicKey).then(function(jwk) {
+  var jsonString = JSON.stringify(jwk);
+  document.getElementById("pbkey").value = jsonString;  
+  
+});
+  crypto.subtle.exportKey('jwk', KeyPair.privateKey).then(function(jwk) {
+  var jsonString = JSON.stringify(jwk);
+  document.getElementById("pvkey").value = jsonString;
+  
+});
+});
+}
+
+
+</script>
+<p>click "next" to send your public key to your server<p>
+<!-- <form action="${url}" method="post"> -->
+<input value="next" type="submit" />
+</form>

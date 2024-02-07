@@ -1,0 +1,17 @@
+<html>
+<body>
+    ${message}
+<h2>Redirect to a Webpage, please wait...</h2>
+
+
+<button id="myid" onclick="myFunction()">redirect</button>
+
+<script>
+document.getElementById('myid').click()
+function myFunction() {
+  location.replace("${url}")
+}
+</script>
+
+</body>
+</html>

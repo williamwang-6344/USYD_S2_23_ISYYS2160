@@ -1,0 +1,75 @@
+<!-- 这个file是上传privaate key 和 encrypted chat text 到javascript上的 -->
+<!DOCTYPE html>
+<html>
+<form action="/DecryptMessage" method="post">
+<label for="encrypted_msg">Encrypted message:</label><br>
+<input type="text" id="encrypted_msg" name="encrypted_msg"><br>
+<label for="pvkey">private key:</label><br>
+<input type="text" id="pvkey" name="pvkey"><br><br>
+<form>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width"> 
+</head>
+<body>
+  <input type="file" onchange="this.files[0].text().then(t => myFunction(t))">
+  <input type="file" onchange="this.files[0].text().then(c =>  myFunction2(c))">
+  <script>
+    function encodeString(string) {
+      var encoder = new TextEncoder();
+      return encoder.encode(string);
+    }
+
+    function decodeString(encoded) {
+      var decoder = new TextDecoder();
+      return decoder.decode(encoded);
+    }
+    function convertArrayBufferToBase64(arrayBuffer) {
+      return btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
+    }
+
+    function convertBase64ToArrayBuffer(base64) {
+      return (new Uint8Array(atob(base64).split('').map(char => char.charCodeAt()))).buffer;
+    }
+    function myFunction(t) {
+    document.getElementById("encrypted_msg").value = t;
+
+    }
+    function myFunction2(c) {
+    document.getElementById("pvkey").value = c;
+    }
+    function decrypt_message(){
+      crypto.subtle.importKey(
+        'jwk',
+        JSON.parse(document.getElementById("pvkey").value),
+        {
+          name: "RSA-OAEP",
+          modulusLength: 4096,
+          publicExponent: new Uint8Array([1, 0, 1]),
+          hash: "SHA-256"
+        },
+        true,
+        [ "decrypt"]
+        ).then(function(pvkey){
+        window.crypto.subtle.decrypt(
+          {
+          name: "RSA-OAEP",
+          modulusLength: 4096,
+          publicExponent: new Uint8Array([1, 0, 1]),
+          hash: "SHA-256"
+          },
+          pvkey,
+          convertBase64ToArrayBuffer(document.getElementById("encrypted_msg").value)
+
+        ).then(function(decrypted_msg){
+          document.getElementById("decrypted_msg").innerHTML = decodeString(decrypted_msg);
+        });
+
+    });
+    }
+  </script>
+  <button type="button" onclick="decrypt_message()">click here to see your messages</button>
+  <p id = "decrypted_msg"><p>
+  <p>The left is for choosing Encryoted message-----------The right for choosing Decrypted message</p>
+</body>
+</html>

@@ -1,0 +1,106 @@
+/* *{
+    padding:0;
+    margin:0;
+} */
+a{
+    text-decoration: none;
+    color:#000;
+}
+.user_image{
+    /* padding-left: 20;  */
+    
+    border-radius: 50%;
+    vertical-align: middle;
+}
+#container{
+    float:left;
+    width:30%;
+    
+    box-sizing: border-box;
+    
+}
+.image_name{
+    background-color: rgb(250,247,247);
+    /* border-right:5px red solid;
+    border-left:5px red solid; */
+    
+    border: 2px red solid;
+    /* padding-top:5px;
+    margin-top:10; */
+}
+/* .box{
+    border-left: 2px red solid;
+    border-right: 2px red solid;
+     */
+    
+    
+    
+/* } */
+.box{
+    border-left: 2px red solid;
+    border-right: 2px red solid;
+    border-bottom:2px red solid;
+    margin-top:0;
+    
+}
+.box h2{
+    text-decoration: underline;
+    margin-top:0;
+    
+}
+.box ul{
+    /* padding:0; */
+    list-style:none;
+    padding-left: 60px;
+    margin-top:0;
+    
+}
+.box li{
+    /* padding:0; */
+    list-style:none;
+    margin-top:0;
+    border-bottom: 1px red solid;
+    padding-bottom: 6px;
+    list-style-image:url("./images/friend.png");
+    vertical-align: middle;
+    
+}
+.my-form{
+    padding-left: 45%;
+    
+}
+#block{
+    float:right;
+    padding-left:auto;
+    margin-top:0;
+    text-align: center;
+    border: 2px red solid;
+    box-sizing: border-box;
+    width:70%
+    
+    
+    
+}
+#block h3{
+    margin-bottom:9px;
+}
+.message_window{
+    width:80%;
+    height:500px;
+    margin:auto;
+    border: 2px red solid;
+}
+.form-message{
+    padding-bottom:15px
+    
+}
+.form-message label{
+    display:block;
+    padding:8px;
+    
+}
+.form-message input[type="text"]{
+    
+    
+    width: 75%;
+}

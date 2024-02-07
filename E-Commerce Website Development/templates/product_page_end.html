@@ -1,0 +1,39 @@
+</ul>
+<h2>Total Price</h2>
+<span id="totalPrice">$0.00</span>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add event listeners for product selection and quantity changes
+        const productRadios = document.querySelectorAll('input[name="selected_product"]');
+        const quantityInputs = document.querySelectorAll('input[name^="quantity"]');
+
+        productRadios.forEach(radio => {
+            radio.addEventListener("change", updateTotalPrice);
+        });
+
+        quantityInputs.forEach(input => {
+            input.addEventListener("input", updateTotalPrice);
+        });
+
+        function updateTotalPrice() {
+            let totalPrice = 0;
+
+            // Loop through all selected products
+            const selectedProduct = document.querySelector('input[name="selected_product"]:checked');
+            if (selectedProduct) {
+                const quantityInput = document.querySelector(`#quantity${selectedProduct.id.slice(-1)}`);
+                const price = parseFloat(selectedProduct.getAttribute('data-price'));
+                const quantity = parseInt(quantityInput.value);
+                totalPrice = quantity * price;
+            }
+
+            document.getElementById("totalPrice").textContent = `$${totalPrice.toFixed(2)}`;
+        }
+    });
+</script>
+
+<button type="submit">Submit Order</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client's Shopping Cart</title>
+</head>
+<body>
+    <h1>Product Selection</h1>
+    <form id="cartForm" action="/product" method="post">
+        <ul>
+
+        <li>
+            <img src="https://kgo.googleusercontent.com/profile_vrt_raw_bytes_1587515358_10512.png" alt="Book" width="100" height="100">
+            <strong>Product Name:</strong> Book
+            <strong>Product Description:</strong> Description 1
+            <strong>Product Price:</strong> $10.99
+            <input type="radio" name="selected_product" id="product0" value="Book" data-price="10.99" required>
+            <label for="quantity0">Quantity:</label>
+            <input type="number" id="quantity0" name="quantity0" value="0" min="0">
+        </li>
+        
+        <li>
+            <img src="https://kgo.googleusercontent.com/profile_vrt_raw_bytes_1587515358_10512.png" alt="Food" width="100" height="100">
+            <strong>Product Name:</strong> Food
+            <strong>Product Description:</strong> Description 2
+            <strong>Product Price:</strong> $19.99
+            <input type="radio" name="selected_product" id="product1" value="Food" data-price="19.99" required>
+            <label for="quantity1">Quantity:</label>
+            <input type="number" id="quantity1" name="quantity1" value="0" min="0">
+        </li>
+        
+        <li>
+            <img src="https://kgo.googleusercontent.com/profile_vrt_raw_bytes_1587515358_10512.png" alt="PC" width="100" height="100">
+            <strong>Product Name:</strong> PC
+            <strong>Product Description:</strong> Description 3
+            <strong>Product Price:</strong> $14.99
+            <input type="radio" name="selected_product" id="product2" value="PC" data-price="14.99" required>
+            <label for="quantity2">Quantity:</label>
+            <input type="number" id="quantity2" name="quantity2" value="0" min="0">
+        </li>
+        </ul>
+<h2>Total Price</h2>
+<span id="totalPrice">$0.00</span>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add event listeners for product selection and quantity changes
+        const productRadios = document.querySelectorAll('input[name="selected_product"]');
+        const quantityInputs = document.querySelectorAll('input[name^="quantity"]');
+
+        productRadios.forEach(radio => {
+            radio.addEventListener("change", updateTotalPrice);
+        });
+
+        quantityInputs.forEach(input => {
+            input.addEventListener("input", updateTotalPrice);
+        });
+
+        function updateTotalPrice() {
+            let totalPrice = 0;
+
+            // Loop through all selected products
+            const selectedProduct = document.querySelector('input[name="selected_product"]:checked');
+            if (selectedProduct) {
+                const quantityInput = document.querySelector(`#quantity${selectedProduct.id.slice(-1)}`);
+                const price = parseFloat(selectedProduct.getAttribute('data-price'));
+                const quantity = parseInt(quantityInput.value);
+                totalPrice = quantity * price;
+            }
+
+            document.getElementById("totalPrice").textContent = `$${totalPrice.toFixed(2)}`;
+        }
+    });
+</script>
+
+<button type="submit">Submit Order</button>
+</form>
+</body>
+</html>

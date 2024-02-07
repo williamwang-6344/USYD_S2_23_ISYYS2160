@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<style>
+    .active ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.active li {
+    float: left;
+}
+
+.active li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.active a:hover {
+    background-color: #111;
+}
+</style>
+<html>
+    <head>
+        <title> User_page</title>
+        <link rel="stylesheet" type="text/css" href="css/user.css">
+        <p>
+            <div class="active">
+            <ul>
+              <li><a href="/home">Home</a></li>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/register">Register</a></li>
+              <li><a href="/productPage">Product Catalog</a></li>
+              <li><a href="/orders">My Orders</a></li>
+              <li><a href="/cart">My Cart</a></li>
+        
+            </ul>    
+            </div>
+            
+
+        </p>
+    <body>
+        <section id ="container">
+            <div class="image_name">
+            
+            
+            <img class = "user_image" src="img/user.webp" width="50" height="50">
+            <span>${Username}</sapn>
+
+            
+            </div>
+            
+            <div class ="box">
+                <h2>Friend list</h2>
+            
+        
+            <ul>
+                
+                <li><a href ="#">FriendA</a></li>
+                
+                <li><a href ="#">FriendB</a></li>
+            </ul>   
+            </div>
+                
+            
+            <div class ="box">
+                <h2>Group list</h2>
+            
+        
+            <ul>
+                <li><a href ="#">FriendA</a></li>
+                <li><a href ="#">FriendB</a></li>
+            </ul>   
+            </div>
+            <form class = "my-form">
+                
+                <button class="button" ><a href="home">Logout</a></button>
+            
+            </form>
+        </section>
+        <aside id= "block">
+            <h3>Message with FriendA</h3>
+            <div class ="message_window">
+            </div>
+            <form class = "form-message">
+                
+                <label>Message:<label>
+                <input name ="message" type="text" ></input>
+            
+                <input class = "button" type = "button" value = "Send" name="">
+            
+            </form>
+        </aside>
+    </body>
+</html>

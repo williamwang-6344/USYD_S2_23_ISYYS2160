@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<style>
+    .active ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.active li {
+    float: left;
+}
+
+.active li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.active a:hover {
+    background-color: #111;
+}
+</style>
+<html>
+    <head>
+        <title> Adminpage</title>
+        <link rel="stylesheet" type="text/css" href="css/admin.css">
+        <p>
+            <div class="active">
+            <ul>
+              <li><a href="/home">Home</a></li>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/register">Register</a></li>
+              <li><a href="/forum">Forum</a></li>
+              <li><a href="/about">About</a></li>
+        
+            </ul>    
+            </div>
+            
+
+        </p>
+        <script>
+            function clean_username_and_post(){
+                document.getElementById("username").value = "";
+                document.getElementById("post").value = "";
+            }
+            function clean_mute_user_and_username(){
+                document.getElementById("mute_user").value = "";
+                document.getElementById("username").value = "";
+            }
+            function clean_mute_user_and_post(){
+                document.getElementById("mute_user").value = "";
+                document.getElementById("post").value = "";
+            }
+        </script>
+    </head>
+    <body>
+        <section id = "container">
+            <div class ="title">
+               <h1>Admin user page</h1>  
+            </div>
+            <form action="/admin" method="post">
+                
+            <div class ="user">
+                <h4>User want to delete</h4>
+                
+                    <div class="form-group">
+                        <label>Username: </label>
+                        <input name ="username" type="text" id = "username"></input> 
+                        <input class = "button" type = "submit" value = "Delete" name="" onclick="clean_mute_user_and_post()">   
+                    </div>
+                   
+             </div>       
+                    
+              
+            <div class ="user">
+                <h4>Post want to delete</h4>
+                
+                    <div class="form-group">
+                        <label>Post: </label>
+                        <input name ="post" type="text" id = "post"></input> 
+                        <input class = "button" type = "submit" value = "Delete" name="" onclick="clean_mute_user_and_username()">   
+                    </div>
+                   
+                    
+                    
+                
+            </div>
+            <div class ="user">
+                <h4>User want to Mute</h4>
+                
+                    <div class="form-group">
+                        <label>Username: </label>
+                        <input name ="mute_user" type="text" id = "mute_user"></input> 
+                        <input class = "button" type = "submit" value = "Mute" name="" onclick ="clean_username_and_post()">   
+                    </div>
+                  
+                    
+                    
+            
+            </div>
+            </form>
+        </section>
+        <aside id= "block">
+            <h3>Message to User</h3>
+            <div class ="message_window">
+            </div>
+            <div class = "form-message">
+                
+                <label>Message:<label>
+                <input name ="message" type="text" ></input>
+            
+                <input class = "button" type = "button" value = "Send" name="">
+            
+                </div>
+        </aside>
+        <aside id= "block">
+            <h3>Message in Forum</h3>
+            <div class ="message_window">
+            </div>
+            <div class = "form-message">
+                
+                <label>Message:<label>
+                <input name ="message" type="text" ></input>
+            
+                <input class = "button" type = "button" value = "Send" name="">
+            
+            </div>
+        </aside>
+    </body>
+</html>

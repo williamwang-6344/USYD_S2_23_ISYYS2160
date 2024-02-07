@@ -1,0 +1,75 @@
+<p>The following operation is for sending messages: </p>
+Receiver: <input type="text" id="receiver" name="receiver">
+plainText: <input type="text" id="plainText" name="plainText">
+Public key: <input type="text" id="pbkey" name="pbkey">
+Encrypted message: <input type="text" id="encrypted_msg" name="encrypted_msg">
+</form>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width"> 
+</head>
+<body>
+  <input type="file" onchange="this.files[0].text().then(t => myFunction(t))">
+  <script>
+    function forms_ini(){
+      for(var form of document.getElementsByTagName('form')){
+          form.addEventListener('submit', function(ev){
+          ev.preventDefault()
+        })
+      }
+    }
+    function encodeString(string) {
+      var encoder = new TextEncoder();
+      return encoder.encode(string);
+    }
+
+    function decodeString(encoded) {
+      var decoder = new TextDecoder();
+      return decoder.decode(encoded);
+    }
+    function convertArrayBufferToBase64(arrayBuffer) {
+      return btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
+    }
+
+    function convertBase64ToArrayBuffer(base64) {
+      return (new Uint8Array(atob(base64).split('').map(char => char.charCodeAt()))).buffer;
+    }
+    function myFunction(t) {
+    document.getElementById("pbkey").value = t;
+
+    }
+
+    function encrypt_message(){
+      crypto.subtle.importKey(
+        'jwk',
+        JSON.parse(document.getElementById("pbkey").value),
+        {
+          name: "RSA-OAEP",
+          modulusLength: 4096,
+          publicExponent: new Uint8Array([1, 0, 1]),
+          hash: "SHA-256"
+        },
+        true,
+        ["encrypt"]
+        ).then(function(pbkey){
+        window.crypto.subtle.encrypt(
+          {
+          name: "RSA-OAEP",
+          modulusLength: 4096,
+          publicExponent: new Uint8Array([1, 0, 1]),
+          hash: "SHA-256"
+          },
+          pbkey,
+          encodeString(document.getElementById("plainText").value)
+
+        ).then(function(encrypted_msg){
+          document.getElementById("encrypted_msg").value = convertArrayBufferToBase64(encrypted_msg);
+        });
+
+
+    });
+    }
+    
+  </script>
+    <button  type="button" onclick="encrypt_message()">click here to encrypt your messages</button>
+    <button  type="Submit" form="onlyForm">Submit</button>

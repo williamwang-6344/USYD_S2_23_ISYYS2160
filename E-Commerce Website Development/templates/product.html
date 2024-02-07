@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client's Shopping Cart</title>
+</head>
+<body>
+    <h1>Product Selection</h1>
+    <form id="cartForm" action="/product" method="post">
+        <ul>
+
+        <li>
+            <img src="https://m.media-amazon.com/images/I/81bsw6fnUiL._SY522_.jpg" alt="Rich Dad Poor Dad" width="100" height="100">
+            <strong>Product Name:</strong> Rich Dad Poor Dad
+            <strong>Product Description:</strong> 2017 marks 20 years since Robert Kiyosaki's Rich Dad Poor Dad first made waves in the Personal Finance arena. It has since become the #1 Personal Finance book of all time... translated into dozens of languages and sold around the world.Rich Dad Poor Dad is Robert's story of growing up with two dads — his real father and the father of his best friend, his rich dad— and the ways in which both men shaped his thoughts about money and investing. The book explodes the myth that you need to earn a high income to be rich and explains the difference between working for money and having your money work for you.
+            <strong>Product Price:</strong> $11.99
+            <input type="radio" name="selected_product" id="product0" value="Rich Dad Poor Dad" data-price="11.99" required>
+            <label for="quantity0">Quantity:</label>
+            <input type="number" id="quantity0" name="quantity0" value="0" min="0">
+        </li>
+        </ul>
+<h2>Total Price</h2>
+<span id="totalPrice">$0.00</span>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add event listeners for product selection and quantity changes
+        const productRadios = document.querySelectorAll('input[name="selected_product"]');
+        const quantityInputs = document.querySelectorAll('input[name^="quantity"]');
+
+        productRadios.forEach(radio => {
+            radio.addEventListener("change", updateTotalPrice);
+        });
+
+        quantityInputs.forEach(input => {
+            input.addEventListener("input", updateTotalPrice);
+        });
+
+        function updateTotalPrice() {
+            let totalPrice = 0;
+
+            // Loop through all selected products
+            const selectedProduct = document.querySelector('input[name="selected_product"]:checked');
+            if (selectedProduct) {
+                const quantityInput = document.querySelector(`#quantity${selectedProduct.id.slice(-1)}`);
+                const price = parseFloat(selectedProduct.getAttribute('data-price'));
+                const quantity = parseInt(quantityInput.value);
+                totalPrice = quantity * price;
+            }
+
+            document.getElementById("totalPrice").textContent = `$${totalPrice.toFixed(2)}`;
+        }
+    });
+</script>
+
+<button type="submit">Submit Order</button>
+</form>
+</body>
+</html>
